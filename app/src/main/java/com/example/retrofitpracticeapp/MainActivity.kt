@@ -14,7 +14,6 @@ import java.net.HttpRetryException
 class MainActivity : AppCompatActivity() {
 
     lateinit var recyclerView: RecyclerView
-    var itemList : ArrayList<ModelClass> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerView)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
-        val adapter = Adapter(this@MainActivity, itemList)
+        val adapter = Adapter()
         recyclerView.adapter =  adapter
 
 
@@ -41,13 +40,9 @@ class MainActivity : AppCompatActivity() {
                 }
                 return@launchWhenCreated
             }
-            // recheck responce is given or not
+            // recheck ,responce is given or not?
             if(response.isSuccessful && response.body() != null){
-                val result = response.body()!!
-                for (i in result){
-                    val data1 = ModelClass(i.completed,i.id, i.title,i.userId)
-                    itemList.add(data1)
-                }
+                  adapter.list = response.body()!!
             }
             else{
                 withContext(Dispatchers.Main){
