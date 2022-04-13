@@ -11,9 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 
 class Adapter: RecyclerView.Adapter<Adapter.MyViewHolder>() {
 
-    class MyViewHolder(view : View) : RecyclerView.ViewHolder(view) {
-        val textArea : TextView = view.findViewById(R.id.textArea)
-    }
 
     private val diffCallback = object : DiffUtil.ItemCallback<ModelClass>() {
         override fun areItemsTheSame(oldItem: ModelClass, newItem: ModelClass): Boolean {
@@ -45,4 +42,9 @@ class Adapter: RecyclerView.Adapter<Adapter.MyViewHolder>() {
     override fun getItemCount(): Int {
         return list.size
     }
+
+    inner class MyViewHolder(view : View) : RecyclerView.ViewHolder(view) {
+        val textArea : TextView = view.findViewById(R.id.textArea)
+    }
+
 }

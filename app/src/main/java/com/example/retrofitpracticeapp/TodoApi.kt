@@ -5,6 +5,6 @@ import retrofit2.http.GET
 
 interface TodoApi {
 
-    @GET("/todos")
+    @GET("todos")
     suspend fun getTitle() : Response<List<ModelClass>>
 }
